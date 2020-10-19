@@ -97,7 +97,7 @@ public class HeavyGameplayScriptInspector : Editor
         GUI.color = baseColor;
         #endregion
 
-        EditorSceneManager.MarkAllScenesDirty();
+        //EditorSceneManager.MarkAllScenesDirty();
     }
 
     void AutoSetReferences()
