@@ -263,9 +263,17 @@ MonoBehaviour:
   cameraTransform: {fileID: 963194228}
   audioListener: {fileID: 963194226}
   privateProperty: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
-  vector: {x: 0, y: 0}
+  color: {r: 0.6132076, g: 0.6103151, b: 0.6103151, a: 0}
+  vector2: {x: 0, y: 0}
   gameString: 
+  animCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enumExample: 0
+  foldoutState: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

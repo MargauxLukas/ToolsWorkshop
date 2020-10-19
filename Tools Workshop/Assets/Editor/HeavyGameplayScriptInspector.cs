@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 [CustomEditor(typeof(MyHeavyGameplayScript))]
 [CanEditMultipleObjects]
@@ -36,19 +37,49 @@ public class HeavyGameplayScriptInspector : Editor
 
         GUILayout.BeginVertical();
 
-        myTargetScript.color = EditorGUILayout.ColorField("My Color", myTargetScript.color);
-        myTargetScript.selfTransform = EditorGUILayout.ObjectField("Self Transform", myTargetScript.selfTransform, typeof(Transform), true) as Transform;
+        EditorGUILayout.LabelField(EditorGUIUtility.labelWidth.ToString());
 
+        int oldIndent = EditorGUI.indentLevel;
+        //EditorGUI.indentLevel += 2;
+        float oldLabelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth *= .5f;
+        myTargetScript.color = EditorGUILayout.ColorField("My Color", myTargetScript.color);
+        EditorGUIUtility.labelWidth = oldLabelWidth;
+        EditorGUI.indentLevel = oldIndent;
+
+        string[] options = new string[] { "Option 1", "Option 2", "Option 3" };
+        myTargetScript.enumExample = (WrapMode)EditorGUILayout.Popup((int)myTargetScript.enumExample, options);
+
+        EditorGUILayout.HelpBox("Ceci est un texte de Help Box", MessageType.Warning);
+
+        EditorGUI.BeginChangeCheck();
+
+        Transform transformResult = EditorGUILayout.ObjectField("Self Transform", myTargetScript.selfTransform, typeof(Transform), true) as Transform;
+
+        bool userChangedSomething = EditorGUI.EndChangeCheck();
+
+        if (userChangedSomething)
+        {
+            Debug.Log("Something changed");
+            Undo.RecordObject(myTargetScript, "Set object transform");
+            myTargetScript.selfTransform = transformResult;
+        }
+
+        #region Foldout
         myTargetScript.foldoutState = EditorGUILayout.Foldout(myTargetScript.foldoutState, "Foldout", true);
 
         if (myTargetScript.foldoutState)
         {
             EditorGUILayout.LabelField("Hello World");
         }
+        #endregion
 
         GUILayout.EndVertical();
 
         #region Set Refecrences Boutons
+        Color baseColor = GUI.color;
+        GUI.color = Color.green;
+
         GUILayout.BeginHorizontal();
 
         if (GUILayout.Button("Auto-Set References"))
@@ -62,7 +93,11 @@ public class HeavyGameplayScriptInspector : Editor
         }
 
         GUILayout.EndHorizontal();
+
+        GUI.color = baseColor;
         #endregion
+
+        EditorSceneManager.MarkAllScenesDirty();
     }
 
     void AutoSetReferences()
