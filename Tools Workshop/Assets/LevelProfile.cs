@@ -7,5 +7,6 @@ public class LevelProfile : ScriptableObject
 {
     public float difficulty;
     public Color environmentColor;
+    public AnimationCurve curveAnim = AnimationCurve.Linear(0, 0, 1, 1);
     public int[] levelValues;
 }

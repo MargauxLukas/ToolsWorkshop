@@ -1,0 +1,6 @@
+#;Name;Text;Texte;Min;Max
+0;Killing Spree;Kill $number enemies;Tuez $number ennemis;20;40
+1;Survival;Survive $number seconds;Survivez $number secondes;10;30
+2;Killing Spree;Kill $number enemies;Tuez $number ennemis;10;20
+3;Survival;Survive $number seconds;Survivez $number secondes;10;20
+4;Killing Spree;Kill $number enemies;Tuez $number ennemis;10;20

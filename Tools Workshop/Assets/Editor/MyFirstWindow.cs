@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -49,6 +50,18 @@ public class MyFirstWindow : EditorWindow
                 else EditorGUI.DrawRect(squareRect, Color.green);
             }
             Repaint();
+        }
+
+        Rect pos = this.position;
+        float w = pos.width;
+        float h = pos.height;
+        Rect closeButtonRect = new Rect(w*.1f, h*.2f, w*.6f, h*.3f);
+
+        if(GUI.Button(closeButtonRect, "Export as JSON"))
+        {
+            string curveAsJSON = JsonUtility.ToJson(currentProfile, true);
+            string filePath = "Assets/myFirstCurve.json";
+            File.WriteAllText(filePath, curveAsJSON);
         }
     }
 }
