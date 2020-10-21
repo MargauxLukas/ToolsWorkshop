@@ -12,10 +12,10 @@ public class SomeCommonComponentInspector : Editor
     private void OnEnable()
     {
         myProp = serializedObject.GetIterator();
-        /*myProp.NextVisible(true);
+        myProp.NextVisible(true);
         Debug.Log(myProp.name);
         Debug.Log(myProp.displayName);
-        Debug.Log(myProp.type);*/
+        Debug.Log(myProp.type);
 
         while (myProp.NextVisible(true))
         {
