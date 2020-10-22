@@ -36,6 +36,6 @@ public class SomeCommonComponentInspector : Editor
         base.OnInspectorGUI();
 
         sw.Stop();
-        EditorGUILayout.LabelField(sw.ElapsedMilliseconds.ToString());
+        EditorGUILayout.LabelField(sw.ElapsedTicks.ToString());
     }
 }
